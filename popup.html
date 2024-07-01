@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>en/de coder</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <h1>en/de coder</h1>
+    <div class="tabs">
+        <button class="tab-option" id="btn-tab-base-64">Base 64</button>
+        <button class="tab-option" id="btn-tab-hex">Hex</button>
+        <button class="tab-option" id="btn-tab-uri-escape">URI Escape</button>
+    </div>
+    <div class="tab" id="base-64">
+        <textarea name="input" id="input-base-64" placeholder="Place your string here..."></textarea>
+        <button class="button" id="btn-encode-base-64">Encode</button>
+        <button class="button" id="btn-decode-base-64">Decode</button>
+        <textarea name="output" id="output-base-64" readonly></textarea>
+        <button class="button" id="btn-copy-base-64">Copy</button>
+    </div>
+    <div class="tab" id="hex">
+        <textarea name="input" id="input-hex" placeholder="Place your string here..."></textarea>
+        <button class="button" id="btn-encode-hex">Encode</button>
+        <button class="button" id="btn-decode-hex">Decode</button>
+        <textarea name="output" id="output-hex" readonly></textarea>
+        <button class="button" id="btn-copy-hex">Copy</button>
+    </div>
+    <div class="tab" id="uri-escape">
+        <textarea name="input" id="input-uri-escape" placeholder="Place your string here..."></textarea>
+        <button class="button" id="btn-escape">Escape</button>
+        <button class="button" id="btn-unescape">Unescape</button>
+        <textarea name="output" id="output-uri-escape" readonly></textarea>
+        <button class="button" id="btn-copy-uri-escape">Copy</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

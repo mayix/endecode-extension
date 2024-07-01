@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "en/de coder",
+  "description": "A simple encoder/decoder for Base64, Hex, and URI",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/endecode16.png",
+      "48": "images/endecode48.png",
+      "128": "images/endecode128.png"
+    }
+  },
+  "permissions": [],
+  "icons": {
+    "16": "images/endecode16.png",
+    "48": "images/endecode48.png",
+    "128": "images/endecode128.png"
+  }
+}
