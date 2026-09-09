@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>en/de coder - Viewer</title>
+    <link rel="stylesheet" href="view.css">
+    <link rel="icon" type="image/png" href="images/endecode16.png">
+</head>
+<body class="theme-light">
+    <header class="app-header">
+        <div class="header-left">
+            <img src="images/endecode48.png" alt="Logo" class="app-logo">
+            <div class="brand">
+                <h1 class="app-title">en/de coder <span class="sub-title">Viewer</span></h1>
+                <span id="source-badge" class="badge badge-source">Output Inspector</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="format-switcher" id="format-switcher" role="radiogroup" aria-label="Format Selector">
+                <button type="button" class="format-btn active" data-format="auto">Auto</button>
+                <button type="button" class="format-btn" data-format="json">JSON</button>
+                <button type="button" class="format-btn" data-format="xml">XML</button>
+                <button type="button" class="format-btn" data-format="html">HTML</button>
+                <button type="button" class="format-btn" data-format="text">Text</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="view-mode-group">
+                <button type="button" id="btn-mode-tree" class="mode-btn active" title="Collapsible Tree View">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 10H3M21 6H3M21 14H3M17 18H3"/></svg>
+                    Tree
+                </button>
+                <button type="button" id="btn-mode-raw" class="mode-btn" title="Raw Code View">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Raw
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <div class="tree-controls" id="tree-controls">
+                <button type="button" id="btn-expand-all" class="tool-btn" title="Expand all collapsible nodes">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg>
+                    Expand All
+                </button>
+                <button type="button" id="btn-collapse-all" class="tool-btn" title="Collapse all expandable nodes">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+                    Collapse All
+                </button>
+            </div>
+
+            <div class="search-box">
+                <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="search-input" placeholder="Search keys, tags, or text..." autocomplete="off">
+                <span id="search-count" class="search-count"></span>
+                <button type="button" id="btn-clear-search" class="clear-search-btn" title="Clear search" style="display: none;">&times;</button>
+            </div>
+        </div>
+
+        <div class="toolbar-right">
+            <button type="button" id="btn-wrap-text" class="tool-btn" title="Toggle line wrap (Raw view)">
+                Wrap Lines
+            </button>
+            <button type="button" id="btn-copy" class="tool-btn" title="Copy to clipboard">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="copy-label">Copy</span>
+            </button>
+            <button type="button" id="btn-download" class="tool-btn tool-btn-primary" title="Download formatted file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+        </div>
+    </div>
+
+    <main class="viewer-container">
+        <!-- Tree View -->
+        <div id="tree-viewport" class="viewport active">
+            <div id="tree-root" class="tree-content"></div>
+        </div>
+
+        <!-- Raw Text View -->
+        <div id="raw-viewport" class="viewport">
+            <div class="raw-code-wrapper">
+                <div id="raw-line-numbers" class="line-numbers"></div>
+                <pre id="raw-content" class="raw-text"></pre>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <div class="empty-icon">&#128269;</div>
+            <h2>No content to display</h2>
+            <p>Go back to the en/de coder popup, decode or convert text, and click "Open in new tab".</p>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-left">
+            <span class="status-item"><strong id="stat-format">Detecting...</strong></span>
+            <span class="status-divider">&bull;</span>
+            <span class="status-item" id="stat-size">0 bytes</span>
+            <span class="status-divider">&bull;</span>
+            <span class="status-item" id="stat-lines">0 lines</span>
+            <span class="status-divider">&bull;</span>
+            <span class="status-item" id="stat-nodes">0 nodes</span>
+        </div>
+        <div class="footer-right">
+            <span class="tip-text">Tip: Click arrows or tag headers to collapse/expand sections</span>
+        </div>
+    </footer>
+
+    <script type="module" src="view.js"></script>
+</body>
+</html>

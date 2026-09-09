@@ -18,7 +18,7 @@ export function formatXML(output) {
         const serializer = new XMLSerializer();
         return serializer
             .serializeToString(xmlDoc)
-            .replace(/(>)(<)(\/*)/g, "$1\n$2");
+            .replace(/(>)(<)(\/*)/g, "$1\n$2$3");
     } catch {
         return null;
     }

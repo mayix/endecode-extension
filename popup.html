@@ -18,21 +18,30 @@
         <button class="button" id="btn-encode-base-64">Encode</button>
         <button class="button" id="btn-decode-base-64">Decode</button>
         <textarea name="output" id="output-base-64" readonly></textarea>
-        <button class="button" id="btn-copy-base-64">Copy</button>
+        <div class="action-buttons">
+            <button class="button" id="btn-copy-base-64">Copy</button>
+            <button class="button button-secondary" id="btn-open-tab-base-64" title="Open result in a full tab with collapsible tree viewer">Open in new tab</button>
+        </div>
     </div>
     <div class="tab" id="hex">
         <textarea name="input" id="input-hex" placeholder="Place your string here..."></textarea>
         <button class="button" id="btn-encode-hex">Encode</button>
         <button class="button" id="btn-decode-hex">Decode</button>
         <textarea name="output" id="output-hex" readonly></textarea>
-        <button class="button" id="btn-copy-hex">Copy</button>
+        <div class="action-buttons">
+            <button class="button" id="btn-copy-hex">Copy</button>
+            <button class="button button-secondary" id="btn-open-tab-hex" title="Open result in a full tab with collapsible tree viewer">Open in new tab</button>
+        </div>
     </div>
     <div class="tab" id="uri-escape">
         <textarea name="input" id="input-uri-escape" placeholder="Place your string here..."></textarea>
         <button class="button" id="btn-escape">Escape</button>
         <button class="button" id="btn-unescape">Unescape</button>
         <textarea name="output" id="output-uri-escape" readonly></textarea>
-        <button class="button" id="btn-copy-uri-escape">Copy</button>
+        <div class="action-buttons">
+            <button class="button" id="btn-copy-uri-escape">Copy</button>
+            <button class="button button-secondary" id="btn-open-tab-uri-escape" title="Open result in a full tab with collapsible tree viewer">Open in new tab</button>
+        </div>
     </div>
 
     <script type="module" src="src/popup.js"></script>

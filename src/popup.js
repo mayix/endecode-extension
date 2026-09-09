@@ -3,6 +3,7 @@ import { encodeBase64, decodeBase64 } from "./utils/base64.js";
 import { encodeHex, decodeHex } from "./utils/hex.js";
 import { escapeUri, unescapeUri } from "./utils/uri.js";
 import { copyToClipboard } from "./handlers/copy.js";
+import { openResultInTab } from "./handlers/openResultInTab.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('btn-copy-base-64').addEventListener('click', () => copyToClipboard('output-base-64'));
     document.getElementById('btn-copy-hex').addEventListener('click', () => copyToClipboard('output-hex'));
     document.getElementById('btn-copy-uri-escape').addEventListener('click', () => copyToClipboard('output-uri-escape'));
+
+    document.getElementById('btn-open-tab-base-64').addEventListener('click', () => openResultInTab('output-base-64', 'Base 64'));
+    document.getElementById('btn-open-tab-hex').addEventListener('click', () => openResultInTab('output-hex', 'Hex'));
+    document.getElementById('btn-open-tab-uri-escape').addEventListener('click', () => openResultInTab('output-uri-escape', 'URI Escape'));
 
 
     // Set default tab
